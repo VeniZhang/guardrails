@@ -97,7 +97,7 @@ class ValidatorPackageService:
         import_path = ValidatorPackageService.get_import_path_from_validator_id(
             validator_id
         )
-
+        import_path = validator_id.split("/")[-1]
         import_line = f"{import_path}"
 
         # Reload or import the module
@@ -254,10 +254,17 @@ class ValidatorPackageService:
 
         guardrails_token = settings.rc.token
 
+        # pip_flags = [
+        #     f"--index-url=https://__token__:{guardrails_token}@pypi.guardrailsai.com/simple",
+        #     "--extra-index-url=https://pypi.org/simple",
+        # ]
+
+
         pip_flags = [
-            f"--index-url=https://__token__:{guardrails_token}@pypi.guardrailsai.com/simple",
+            f"--index-url=http://127.0.0.1:8524/simple",
             "--extra-index-url=https://pypi.org/simple",
         ]
+
 
         if upgrade:
             pip_flags.append("--upgrade")
@@ -269,8 +276,9 @@ class ValidatorPackageService:
 
         try:
             full_package_name = f"{pep_503_package_name}[validators]{validator_version}"
+            name = validator_id.split("/")[-1]
             download_output = pip_process_with_custom_exception(
-                "install", full_package_name, pip_flags, quiet=quiet
+                "install", name, pip_flags, quiet=quiet
             )
             if not quiet:
                 logger.info(download_output)

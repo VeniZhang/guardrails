@@ -70,3 +70,7 @@ def install_cli(
     except Exception as e:
         logger.error(str(e))
         sys.exit(1)
+if __name__ == "__main__":
+    # app()
+    #hub_command(["install", "hub://guardrails/regex_match"])
+    hub_command(["install", "hub://guardrails/uppercase"])
