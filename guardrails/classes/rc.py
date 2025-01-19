@@ -16,6 +16,9 @@ class RC(Serializeable):
     token: Optional[str] = None
     enable_metrics: Optional[bool] = True
     use_remote_inferencing: Optional[bool] = True
+    is_firewall2: Optional[bool] = True
+    hub: Optional[str] = None
+    manifest: Optional[str] = None
 
     @staticmethod
     def exists() -> bool:

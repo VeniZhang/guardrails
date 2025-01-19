@@ -84,9 +84,9 @@ def fetch_module_manifest(
     manifest_path = validator_manifest_endpoint.safe_substitute(
         namespace=namespace, validator_name=validator_name
     )
-    #manifest_url = f"{VALIDATOR_HUB_SERVICE}/{manifest_path}"
-    VALIDATOR_HUB_SERVICE = "http://127.0.0.1:8527"
-    manifest_url = f"{VALIDATOR_HUB_SERVICE}/{validator_name}.txt"
+    manifest_url = f"{VALIDATOR_HUB_SERVICE}/{manifest_path}"
+    if settings.rc.is_firewall2:
+        manifest_url = f"{settings.rc.manifest}/{validator_name}"
     return fetch(manifest_url, token, anonymousUserId)
 
 

@@ -73,4 +73,4 @@ def install_cli(
 if __name__ == "__main__":
     # app()
     #hub_command(["install", "hub://guardrails/regex_match"])
-    hub_command(["install", "hub://guardrails/uppercase"])
+    hub_command(["install", "hub://guardrails/uppercasezdq"])
